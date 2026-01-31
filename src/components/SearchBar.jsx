@@ -1,49 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { content } from '../data/content';
-import { books } from '../data/books';
+import stylesConfig from '../data/styles.json';
 
 const SearchBar = ({ searchTerm, setSearchTerm }) => {
     const [placeholder, setPlaceholder] = useState('');
-    const [index, setIndex] = useState(0);
-    const [subIndex, setSubIndex] = useState(0);
-    const [reverse, setReverse] = useState(false);
-    const words = content.search.typingData;
+    const typingData = content.search.typingData;
+    const animationSpeed = stylesConfig.animations.searchTypewriterSpeed;
+    const delay = stylesConfig.animations.searchTypewriterDelay;
 
-    // Typewriter effect
     useEffect(() => {
-        if (words.length === 0) return;
+        let currentIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        let timeoutId;
 
-        if (subIndex === words[index].length + 1 && !reverse) {
-            setTimeout(() => setReverse(true), 1000);
-            return;
-        }
+        const type = () => {
+            const currentText = typingData[currentIdx];
 
-        if (subIndex === 0 && reverse) {
-            setReverse(false);
-            setIndex((prev) => (prev + 1) % words.length);
-            return;
-        }
+            if (isDeleting) {
+                setPlaceholder(currentText.substring(0, charIdx - 1));
+                charIdx--;
+            } else {
+                setPlaceholder(currentText.substring(0, charIdx + 1));
+                charIdx++;
+            }
 
-        const timeout = setTimeout(() => {
-            setSubIndex((prev) => prev + (reverse ? -1 : 1));
-            setPlaceholder(words[index].substring(0, subIndex));
-        }, reverse ? 75 : 150);
+            let typeSpeed = animationSpeed;
 
-        return () => clearTimeout(timeout);
-    }, [subIndex, index, reverse, words]);
+            if (!isDeleting && charIdx === currentText.length) {
+                // Finished typing word, wait before deleting
+                typeSpeed = delay;
+                isDeleting = true;
+            } else if (isDeleting && charIdx === 0) {
+                // Finished deleting, move to next word
+                isDeleting = false;
+                currentIdx = (currentIdx + 1) % typingData.length;
+                typeSpeed = 500;
+            }
+
+            timeoutId = setTimeout(type, typeSpeed);
+        };
+
+        type();
+
+        return () => clearTimeout(timeoutId);
+    }, []);
 
     return (
         <div className="search-container">
-            <Search className="search-icon" size={20} />
-            <input
-                type="text"
-                placeholder={content.search.placeholder + " | " + placeholder}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="search-input"
-                style={{ fontFamily: 'var(--font-bengali), var(--font-main)' }} // Ensure Bengali font support
-            />
+            <div className="search-wrapper">
+                <Search className="search-icon" size={20} />
+                <input
+                    type="text"
+                    placeholder={placeholder}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                />
+            </div>
         </div>
     );
 };

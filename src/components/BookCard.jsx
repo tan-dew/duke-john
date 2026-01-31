@@ -16,11 +16,14 @@ const BookCard = ({ book }) => {
                     }}
                 />
             </div>
-            <h3 className="book-card-title">{book.title}</h3>
-            <div className="book-card-meta">
-                {book.type && <span>{book.type}</span>}
-                {book.type && book.publishedDate && <span> | </span>}
-                {book.publishedDate && <span>{book.publishedDate}</span>}
+
+            <div className="book-card-info">
+                <h3 className="book-card-title">{book.title}</h3>
+                <div className="book-card-meta">
+                    {book.type && <span className="meta-type">{book.type}</span>}
+                    {book.type && book.publishedDate && <span className="meta-separator"> | </span>}
+                    {book.publishedDate && <span className="meta-date">{book.publishedDate}</span>}
+                </div>
             </div>
         </Link>
     );

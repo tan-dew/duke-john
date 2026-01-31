@@ -14,8 +14,7 @@ const BookDetail = () => {
         window.scrollTo(0, 0);
     }, [id]);
 
-    // Random 6 other books
-    // MEMOIZED so it doesn't re-randomize on every re-render, but will on every mount (refresh/navigation)
+    // Random 6 other books (Memoized)
     const otherBooks = useMemo(() => {
         return books
             .filter((b) => b.id !== (book ? book.id : -1))
@@ -27,9 +26,25 @@ const BookDetail = () => {
         return <div className="container" style={{ padding: '4rem 0' }}>Book not found.</div>;
     }
 
+    // Helper to map link labels
+    const getLinkLabel = (siteKey) => {
+        return content.linkLabels[siteKey] || content.linkLabels.default;
+    };
+
+    // Helper for button color based on site (optional logic, defaults to consistent brand or specific colors)
+    const getButtonColor = (siteKey) => {
+        switch (siteKey) {
+            case 'rokomari': return '#22c55e'; // Green
+            case 'baatighar': return '#a855f7'; // Purple
+            case 'mamun': return '#3b82f6'; // Blue
+            case 'seba': return '#ef4444'; // Red
+            default: return '#111'; // Black
+        }
+    };
+
     return (
         <div className="container book-detail-page">
-            <Link to="/" className="btn-outline back-btn" style={{ fontFamily: 'var(--font-bengali)' }}>
+            <Link to="/" className="btn-outline secondary-btn" style={{ fontFamily: 'var(--font-bengali)' }}>
                 <ArrowLeft size={16} /> {content.bookDetail.backToHome}
             </Link>
 
@@ -54,26 +69,19 @@ const BookDetail = () => {
                     <p className="detail-author">{book.author}</p>
 
                     <div className="action-buttons" style={{ flexWrap: 'wrap' }}>
-                        {/* Rokomari Link */}
-                        {book.purchaseLink && (
-                            <a href={book.purchaseLink} target="_blank" rel="noopener noreferrer" className="btn buy-now-btn" style={{ background: '#22c55e', borderColor: '#22c55e' }}>
-                                <ShoppingCart size={18} /> {content.bookDetail.buyRokomari}
+                        {/* Dynamic Links Rendering */}
+                        {book.links && book.links.map((link, index) => (
+                            <a
+                                key={index}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn buy-now-btn"
+                                style={{ background: getButtonColor(link.site), borderColor: getButtonColor(link.site), color: '#fff' }}
+                            >
+                                <ShoppingCart size={18} /> {getLinkLabel(link.site)}
                             </a>
-                        )}
-
-                        {/* Mamun Books Link */}
-                        {book.purchaseLinkMamun && (
-                            <a href={book.purchaseLinkMamun} target="_blank" rel="noopener noreferrer" className="btn buy-now-btn" style={{ background: '#3b82f6', borderColor: '#3b82f6' }}>
-                                <ShoppingCart size={18} /> {content.bookDetail.buyMamun}
-                            </a>
-                        )}
-
-                        {/* Baatighar Link */}
-                        {book.purchaseLinkBaatighar && (
-                            <a href={book.purchaseLinkBaatighar} target="_blank" rel="noopener noreferrer" className="btn buy-now-btn" style={{ background: '#a855f7', borderColor: '#a855f7' }}>
-                                <ShoppingCart size={18} /> {content.bookDetail.buyBaatighar}
-                            </a>
-                        )}
+                        ))}
                     </div>
 
                     <div className="detail-section">

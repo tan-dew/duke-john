@@ -7,30 +7,25 @@ export const content = {
         goodreads: "গুডরিডস"
     },
     hero: {
+        authorName: "ডিউক জন",
         subtitle: "",
         followFacebook: "ফেসবুক প্রোফাইল",
         rokomariProfile: "রকমারি প্রোফাইল",
         baatigharProfile: "বাতিঘর প্রোফাইল",
         boighorProfile: "বইঘর প্রোফাইল",
-        goodreadsProfile: "গুডরিডস প্রোফাইল"
+        goodreadsProfile: "গুডরিডস প্রোফাইল",
+        bio: "জন্ম ঢাকায়। পৈতৃক নিবাস চট্টগ্রামে। পড়াশোনা ঢাকা সিটি কলেজে। একটি বেসরকারি প্রতিষ্ঠানে কর্মরত তিনি। প্রকাশিত হয়েছে আরও ২৯টি বই। প্রথম বই রক্তাক্ত স্বর্গ। লিখেছেন কাজী আনোয়ার হোসেনের সহযোগী হিসেবে লেখা মাসুদ রানা সিরিজের শকওয়েভ বইটিও। অবসরে ঘুরে বেড়াতে ভালোবাসেন তিনি। সেটা হতে পারে ঘর হতে শুধু দুই পা ফেলিয়া গোরস্তানের গলিতেও। স্রেফ হাজীর বিরিয়ানি খাওয়ার জন্য মিরপুর থেকে উবার নিয়ে চলে যেতে পারেন পুরান ঢাকার নাজিরাবাজারে। বই, গান, সিনেমার একটিকেও ছাড়া চলে না তাঁর। আগ্রহের তালিকায় আরও রয়েছে গাছ আর ইন্টেরিয়র ডিজাইন।"
     },
-    // Search
     search: {
         placeholder: "বই খুঁজুন - Search Books",
         noResults: "কোন বই খুঁজে পাওয়া যায়নি।",
-        typingData: ["সুবর্ণ সমাধি", "Mora Manusher Haat", "হান্টার", "Roktakto Swargo", "সেবা প্রকাশনী"]
+        typingData: ["যক্ষিণী", "Roktakto Sworgo", "সুলতান সুলেমান", "Thugs of Hindustan", "শকওয়েভ"]
     },
-    // Home
     home: {
         sectionTitle: "প্রকাশিত বইসমূহ"
     },
-    // Book Detail
     bookDetail: {
-        backToHome: "ফিরে যান", // Back
-        buyNow: "কিনুন", // Buy Now
-        buyRokomari: "রকমারি থেকে কিনুন",
-        buyMamun: "মামুন বুকস থেকে কিনুন",
-        buyBaatighar: "বাতিঘর থেকে কিনুন",
+        backToHome: "ফিরে যান",
         detailsTitle: "বইয়ের বিস্তারিত",
         infoTitle: "তথ্য",
         publisher: "প্রকাশক",
@@ -38,6 +33,14 @@ export const content = {
         pages: "পৃষ্ঠা সংখ্যা",
         type: "ধরণ",
         otherBooks: "অন্যান্য বই"
+    },
+    linkLabels: {
+        rokomari: "রকমারি থেকে কিনুন",
+        baatighar: "বাতিঘর থেকে কিনুন",
+        mamun: "মামুন বুকস থেকে কিনুন",
+        boighor: "বইঘর থেকে কিনুন",
+        seba: "সেবা প্রকাশনী থেকে কিনুন",
+        default: "কিনুন"
     },
     // Footer
     footer: {

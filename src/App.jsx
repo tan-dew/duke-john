@@ -1,10 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import BookDetail from './pages/BookDetail';
 import { content } from './data/content';
+import stylesConfig from './data/styles.json';
 
 function App() {
+  // Apply styles from JSON on mount
+  useEffect(() => {
+    const root = document.documentElement;
+    const { colors, fonts } = stylesConfig.theme;
+
+    // Colors
+    root.style.setProperty('--color-bg', colors.bg);
+    root.style.setProperty('--color-card-bg', colors.cardBg);
+    root.style.setProperty('--color-text-main', colors.textMain);
+    root.style.setProperty('--color-text-muted', colors.textMuted);
+    root.style.setProperty('--color-accent', colors.accent);
+    root.style.setProperty('--color-border', colors.border);
+
+    // New Extracted Colors
+    root.style.setProperty('--color-btn-bg', colors.buttonBg);
+    root.style.setProperty('--color-btn-text', colors.buttonText);
+    root.style.setProperty('--color-search-bg', colors.searchBg);
+    root.style.setProperty('--color-header-bg', colors.headerBg);
+    root.style.setProperty('--color-footer-bg', colors.footerBg);
+    root.style.setProperty('--color-nav-text', colors.navText);
+
+    root.style.setProperty('--color-btn-profile-bg', colors.profileButtonBg);
+    root.style.setProperty('--color-btn-profile-text', colors.profileButtonText);
+    root.style.setProperty('--color-secondary-btn-bg', colors.secondarybutton);
+    root.style.setProperty('--color-secondary-btn-text', colors.secondarybuttontext);
+
+    // Typography
+    if (stylesConfig.theme.typography) {
+      root.style.setProperty('--font-weight-nav', stylesConfig.theme.typography.navFontWeight);
+    }
+
+    // Fonts
+    // Note: Fonts are loaded in index.css via @import, this sets the variable usage
+    root.style.setProperty('--font-main', fonts.main);
+    root.style.setProperty('--font-bengali', fonts.bengali);
+  }, []);
+
   return (
     <Router>
       <div className="app-wrapper" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>

@@ -1,0 +1,32 @@
+{
+    "theme": {
+        "colors": {
+            "bg": "Ivory",
+            "cardBg": "Cornsilk",
+            "textMain": "#111111",
+            "textMuted": "#666666",
+            "accent": "#000000",
+            "border": "#e5e5e5",
+            "buttonBg": "#111111",
+            "buttonText": "#ffffff",
+            "secondarybutton": "Cornsilk",
+            "secondarybuttontext": "#111111",
+            "searchBg": "Beige",
+            "headerBg": "transparent",
+            "footerBg": "transparent",
+            "navText": "#111111"
+        },
+        "typography": {
+            "navFontWeight": "700"
+        },
+        "fonts": {
+            "main": "'Inter', sans-serif",
+            "bengali": "'Noto Serif Bengali', serif"
+        }
+    },
+    "animations": {
+        "heroTypewriterSpeed": 150,
+        "searchTypewriterSpeed": 150,
+        "searchTypewriterDelay": 1000
+    }
+}

@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Facebook, ShoppingBag, BookOpen, ExternalLink } from 'lucide-react';
 import { content } from '../data/content';
+import stylesConfig from '../data/styles.json';
 
 const Hero = () => {
+    const [displayedName, setDisplayedName] = useState('');
+    const fullName = content.hero.authorName;
+
+    useEffect(() => {
+        let index = 0;
+        const interval = setInterval(() => {
+            setDisplayedName(fullName.substring(0, index + 1));
+            index++;
+            if (index === fullName.length) {
+                clearInterval(interval);
+            }
+        }, stylesConfig.animations.heroTypewriterSpeed); // Configurable speed
+
+        return () => clearInterval(interval);
+    }, [fullName]);
+
     return (
         <div className="hero-section">
             <div className="hero-layout">
@@ -21,13 +38,11 @@ const Hero = () => {
 
                 <div className="hero-bio">
                     {/* User requested: Bio Right */}
-                    <h1>ডিউক জন</h1>
+                    <h1 style={{ minHeight: '1.2em' }}>{displayedName}</h1>
                     <p className="hero-subtitle">{content.hero.subtitle}</p>
 
                     <p className="bio-text">
-                        জনপ্রিয় থ্রিলার এবং রহস্য রোমাঞ্চ লেখক ডিউক জন। তার লেখনীতে উঠে আসে অদেখা ভুবনের গল্প,
-                        যা পাঠকদের নিয়ে যায় এক অদ্ভুত এবং রোমাঞ্চকর জগতে। পিশাচ কাহিনি থেকে শুরু করে সাইকোলজিক্যাল থ্রিলার—সব ঘরানাতেই তার অবাধ বিচরণ।
-                        পাঠকদের শিহরিত করতে তার জুড়ি মেলা ভার।
+                        {content.hero.bio}
                     </p>
 
                     <div className="hero-links" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginTop: '2rem' }}>
