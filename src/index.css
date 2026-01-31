@@ -100,7 +100,7 @@ a:hover {
 nav {
   padding: 2rem 0;
   background-color: var(--color-header-bg);
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .nav-inner {
@@ -446,7 +446,132 @@ footer {
   padding-top: 3rem;
 }
 
-.related-books-section>h3 {
-  margin-bottom: 2rem;
-  text-align: center;
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--color-text-main);
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  /* Sidebar Styles */
+  .mobile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100%;
+    background: var(--color-bg);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .mobile-sidebar.open {
+    right: 0;
+  }
+
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .sidebar-header .logo {
+    font-size: 1.25rem;
+  }
+
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sidebar-links a {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+  /* Hero Mobile Fixes */
+  .hero-layout {
+    text-align: center;
+  }
+
+  .hero-image-wrapper {
+    flex: 0 0 auto;
+    width: 50% !important;
+    margin: 0 auto;
+  }
+
+  .hero-bio h1 {
+    text-align: center;
+    font-size: 2.2rem;
+  }
+
+  .hero-links {
+    justify-content: center;
+    flex-wrap: wrap !important;
+    /* Allow wrapping on small screens */
+  }
+
+  .section-title {
+    text-align: center;
+  }
+
+  /* Book Detail Mobile Fixes */
+  .book-detail-main {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .book-detail-image {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .detail-title,
+  .detail-author {
+    text-align: center;
+  }
+
+  .action-buttons {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .related-books-section>h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-menu-toggle {
+    display: none;
+  }
+
+  .mobile-sidebar {
+    display: none;
+  }
 }
