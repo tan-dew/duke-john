@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://ta-an-dew.github.io/duke-john/",
+  "homepage": "https://tan-dew.github.io/duke-john/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
