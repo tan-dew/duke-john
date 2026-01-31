@@ -53,7 +53,7 @@ const BookDetail = () => {
                 <div className="book-detail-image">
                     <div className="image-aspect-wrapper">
                         <img
-                            src={book.coverImage}
+                            src={`${import.meta.env.BASE_URL}${book.coverImage.startsWith('/') ? book.coverImage.slice(1) : book.coverImage}`}
                             alt={book.title}
                             onError={(e) => {
                                 e.target.style.display = 'none';

@@ -6,7 +6,7 @@ const BookCard = ({ book }) => {
         <Link to={`/book/${book.id}`} className="book-card">
             <div className="book-card-image-wrapper">
                 <img
-                    src={book.coverImage}
+                    src={`${import.meta.env.BASE_URL}${book.coverImage.startsWith('/') ? book.coverImage.slice(1) : book.coverImage}`}
                     alt={book.title}
                     className="book-card-image"
                     onError={(e) => {

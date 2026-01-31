@@ -26,7 +26,7 @@ const Hero = () => {
                 <div className="hero-image-wrapper">
                     {/* User requested: Photo Left */}
                     <img
-                        src="/images/author/duke-john.jpg"
+                        src={`${import.meta.env.BASE_URL}images/author/duke-john.jpg`}
                         alt="Duke John"
                         className="author-photo"
                         onError={(e) => {
